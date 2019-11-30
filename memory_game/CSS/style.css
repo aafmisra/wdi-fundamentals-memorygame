@@ -13,6 +13,28 @@ main {
 	width: 850px;
 	margin: 35px auto;
 }
+
+#game-board:hover {
+	cursor: pointer;
+}
+
+#reset {
+	padding: 10px;
+	margin-top: 35px;
+	background-color: #F15B31;
+	color: black;
+	font-family: "Raleway", sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+	border: transparent;
+	border-radius: 5px;
+}
+
+#reset:hover {
+	background-color: white;
+	cursor: pointer;
+}
+
 h1 {
 font-family: "Raleway", sans-serif;
 font-weight: 400;
@@ -67,6 +89,11 @@ p {
 font-family: "Droid Serif", serif;
 line-height: 26px;
 font-size: 18px;
+}
+
+#scorecard {
+	font-variant: small-caps;
+	font-family: "Raleway", sans-serif;
 }
 
 footer {

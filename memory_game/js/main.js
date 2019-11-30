@@ -1,3 +1,16 @@
+function swap(arr, i, j) {
+	let temp = arr[j];
+	arr[j] = arr[i];
+	arr[i] = temp;
+}
+
+function shuffle(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		let rand = Math.round(Math.random() * (arr.length - 1));
+		swap(arr, rand, i);
+	}
+}
+
 
 
 let cards = [
@@ -22,13 +35,28 @@ let cards = [
 	cardImage: "images/king-of-diamonds.png"
 }
 ];
-let cardsInPlay = []
+
+shuffle(cards);
+
+let cardsInPlay = [];
+
+let message = document.getElementById("message");
+
+let score = document.getElementById("score");
+
+let matches = 0;
 
 function checkForMatch() {
 	if (cardsInPlay[0] === cardsInPlay[1]) {
-			alert("You found a match!");
+			message.textContent = "You found a match!";
+			score.textContent = `Your matches: ${++matches}`;
 	} else {
-			alert("Sorry, try again!");
+			message.textContent = "Sorry, try again.";
+			let cardElements = document.getElementsByClassName("card");
+			for (let i = 0; i < cardElements.length; i++) {
+				cardElements[i].setAttribute("src", "images/back.png");
+			}
+			cardsInPlay = [];
 	}
 }
 
@@ -47,15 +75,28 @@ function flipCard() {
 
 function createBoard(){
 	for (let i = 0; i < cards.length; i++) {
-		let = cardElement = document.createElement("img");
+		let cardElement = document.createElement("img");
 		cardElement.setAttribute("src", "images/back.png");
 		cardElement.setAttribute("data-id", i);
 		cardElement.addEventListener("click", flipCard); 
+		cardElement.classList.add("card");
 		document.getElementById("game-board").appendChild(cardElement);
 	}
 };
 
 createBoard();
+
+function reset() {
+	message.textContent = "";
+	shuffle(cards);
+	let cardElements = document.getElementsByClassName("card");
+	for (let i = 0; i < cardElements.length; i++) {
+		cardElements[i].setAttribute("src", "images/back.png");
+	}
+	cardsInPlay = [];
+}
+
+document.getElementById("reset").addEventListener("click", reset);
 
 
 
